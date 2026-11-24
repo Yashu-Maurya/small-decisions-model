@@ -5,7 +5,8 @@ import torch
 from slm import train
 
 
-CHECKPOINT = Path("checkpoints/smol_decision_epoch1.pt")
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
+CHECKPOINT = PROJECT_ROOT / "checkpoints" / "smol_decision_epoch1.pt"
 
 EXAMPLES = [
     ("That joke was hilarious!", ["Reply with thanks", "laugh_animation", "Ask what the joke means"]),
@@ -44,7 +45,7 @@ def main():
             f"Checkpoint missing: {CHECKPOINT}. Finish training before prediction."
         )
 
-    device = "mps" if torch.backends.mps.is_available() else "cpu"
+    device = "cuda" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu"
     train.DEVICE = device  # train.SmolDecision.vector creates tensors on this device.
 
     model = train.SmolDecision(train.VOCAB_SIZE, 64).to(device)
