@@ -1,0 +1,16 @@
+.venv/
+.cache/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.DS_Store
+.pytest_cache/
+.ruff_cache/
+# Generated corpora; keep their generator code and documentation trackable.
+/data/decision-custom-1/dataset/
+/data/fineweb_edu_1b/
+/data/fineweb_edu_1b.zip
+checkpoints/
+runs/
+*.safetensors
+
