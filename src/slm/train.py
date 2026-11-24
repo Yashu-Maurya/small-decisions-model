@@ -1,10 +1,11 @@
 import os, time, json
+from pathlib import Path
 from torch import nn, tensor, long
 import torch
 from torch.nn import functional as F
 from slm.tokenizer import encode, load_merges, load_file, DATA_PATH
 
-merges = load_merges("/Users/yashumaurya/Documents/slm/src/slm/merges.json")
+merges = load_merges(str(Path(__file__).with_name("merges.json")))
 VOCAB_SIZE = 256 + len(merges)
 DEVICE = "mps"
 
@@ -101,6 +102,7 @@ if __name__ == "__main__":
                 )
 
     print()
-    os.makedirs("checkpoints", exist_ok=True)
-    torch.save(model.state_dict(), "checkpoints/smol_decision_epoch1.pt")
+    checkpoint_dir = Path(__file__).resolve().parents[2] / "checkpoints"
+    os.makedirs(checkpoint_dir, exist_ok=True)
+    torch.save(model.state_dict(), checkpoint_dir / "smol_decision_epoch1.pt")
     print("Checkpoint saved.")

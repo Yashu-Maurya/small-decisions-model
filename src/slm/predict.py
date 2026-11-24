@@ -5,7 +5,7 @@ import torch
 from slm import train
 
 
-CHECKPOINT = Path("checkpoints/smol_decision_epoch1.pt")
+CHECKPOINT = Path(__file__).resolve().parents[2] / "checkpoints/smol_decision_epoch1.pt"
 
 EXAMPLES = [
     ("That joke was hilarious!", ["Reply with thanks", "laugh_animation", "Ask what the joke means"]),

@@ -1,7 +1,9 @@
 import json, os
 from itertools import groupby
+from pathlib import Path
 
-DATA_PATH = "/Users/yashumaurya/Documents/slm/data/decision-custom-1/dataset"
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
+DATA_PATH = PROJECT_ROOT / "data/decision-custom-1/dataset"
 VOCAB_SIZE=4096
 
 def load_file(path)->list:
